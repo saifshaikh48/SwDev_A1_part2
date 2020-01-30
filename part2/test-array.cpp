@@ -252,6 +252,12 @@ void test6() {
  t_true(test->compare(t) < 0);
  t_true(u->compare(s) > 0);
  t_false(u->compare(test) == 0);
+ 
+ delete test;
+ delete tsetett;
+ delete s;
+ delete t;
+ delete u;
 
  OK("6");
 }
