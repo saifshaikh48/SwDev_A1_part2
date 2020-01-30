@@ -11,13 +11,13 @@ void test1() {
   IntArray * t = new IntArray();
   IntArray * u = new IntArray();
   
-  u.push_back(5);
+  u->push_back(5);
   
   t_true(s->equals(s));
   t_true(s->equals(t));
   t_false(s->equals(u));
   
-  s.push_back(5);
+  s->push_back(5);
   
   t_true(s->hash() == u->hash());
   t_true(s->equal() == u->equal());
@@ -33,8 +33,8 @@ void test1() {
   t->clear(); 
   
   t_true(t->size() == 0); 
-  t_true(s->index_of(0) == 4); 
-  t_true(s->index_of(1) == 5); 
+  t_true(s->index_of(4) == 0); 
+  t_true(s->index_of(5) == 1); 
   t_true(s->remove(1) == 5); 
   t_true(u->set(0, 7) == 5); 
   t_false(u->is_empty()); 
@@ -55,13 +55,13 @@ void test2() {
   BoolArray * t = new BoolArray();
   BoolArray * u = new BoolArray();
   
-  u.push_back(1);
+  u->push_back(1);
   
   t_true(s->equals(s));
   t_true(s->equals(t));
   t_false(s->equals(u));
   
-  s.push_back(1);
+  s->push_back(1);
   
   t_true(s->hash() == u->hash());
   t_true(s->equal() == u->equal());
@@ -104,12 +104,12 @@ void test2() {
  
 void test3() {
   StringArray * s = new StringArray();
-  s.add(0, "Test");
+  s->add(0, "Test");
   String test = s.remove(0);
-  s.add(0, "Test2"); 
-  s.push_back("Test3");
-  String replaced = s.replace(1, "replaced");
-  s.clear();
+  s->add(0, "Test2"); 
+  s->push_back("Test3");
+  String replaced = s->replace(1, "replaced");
+  s->clear();
   t_true(test->equals("Test"));
   t_true(replaced->equals("Test3"));
   t_true(s->is_empty());
@@ -122,20 +122,20 @@ void test4() {
   StringArray * t = new StringArray();
   StringArray * u = new StringArray();
   
-  u.push_back("hello");
+  u->push_back("hello");
   
   t_true(s->equals(s));
   t_true(s->equals(t));
   t_false(s->equals(u));
   
-  s.add(0,"hello");
+  s->add(0,"hello");
   
   t_true(s->hash() == u->hash());
   t_true(s->equal() == u->equal());
   
   s->add(0, "hi"); 
   
-  t_true(s->get(0) == "hi"); 
+  t_true(s->get(0)->equals("hi")); 
   
   t->add_all(0, u);
   
@@ -143,10 +143,12 @@ void test4() {
   
   t->clear(); 
   
+  String* hi = new String("hi");
+  String* hello = new String("hello");
   t_true(t->size() == 0); 
-  t_true(s->index_of(0)->equals("hi")); 
-  t_true(s->index_of(1)->equals("hello")); 
-  t_true(s->remove(1)->equals("hello")); 
+  t_true(s->index_of(hi)->equals(0)); 
+  t_true(s->index_of(hello)->equals(1)); 
+  t_true(s->remove(1)->equals(hello)); 
   t_true(u->set(0, "hi")->equals("hello")); 
   t_true(u->get(0)->equals("hi"));
   t_false(u->is_empty()); 
@@ -169,13 +171,13 @@ void test5() {
   FloatArray * t = new FloatArray();
   FloatArray * u = new FloatArray();
   
-  u.push_back(5.7);
+  u->push_back(5.7);
   
   t_true(s->equals(s));
   t_true(s->equals(t));
   t_false(s->equals(u));
   
-  s.push_back(5.7);
+  s->push_back(5.7);
   
   t_true(s->hash() == u->hash());
   t_true(s->equal() == u->equal());
@@ -191,11 +193,12 @@ void test5() {
   t->clear(); 
   
   t_true(t->size() == 0); 
-  t_true(s->index_of(0) == 4.2); 
-  t_true(s->index_of(1) == 5.7); 
+  t_true(s->index_of(4.2) == 0); 
+  t_true(s->index_of(5.7) == 1); 
   t_true(s->remove(1) == 5.7); 
   t_true(u->set(0, 16) == 5.7); 
   t_true(u->get(0) == 16.0);
+  t_true(u->index_of(16) == 0);
   t_false(u->is_empty()); 
 
   u->remove(0); 
@@ -204,7 +207,7 @@ void test5() {
 
   u->push_back(-17.4)
 
-  t_true(u->index_of(0) == -17.4);
+  t_true(u->index_of(-17.4) == 0);
 
   OK("5");
 }

@@ -35,7 +35,7 @@ class BoolArray : public Object {
 		
 		~BoolArray(); //destructor
 
-		void push_back(int e); // Appends e to end
+		void push_back(bool e); // Appends e to end
 		void add(size_t i, int e); // Inserts e at i
 		void add_all(size_t i, BoolArray* c); // Inserts all of elements in c into this list at i
 		void clear(); // Removes all of elements from this list
@@ -79,20 +79,20 @@ class StringArray : public Object {
 	public:
 
 		StringArray(); //default constructor
-		StringArray(size_t size, char** vals); //convenience constructor, initializes new Array with all elements given
+		StringArray(size_t size, String** vals); //convenience constructor, initializes new Array with all elements given
 		
 		~StringArray(); //destructor
 
-		void push_back(char* e); // Appends e to end
-		void add(size_t i, char* e); // Inserts e at i
+		void push_back(String* e); // Appends e to end
+		void add(size_t i, String* e); // Inserts e at i
 		void add_all(size_t i, StringArray* c); // Inserts all of elements in c into this list at i
 		void clear(); // Removes all of elements from this list
 		virtual bool equals(Object* o); // Compares o with this list for equality.
 		String* get(size_t index); // Returns the element at index
 		virtual size_t hash(); // Returns the hash code value for this list.
-		size_t index_of(char* o); // Returns the index of the first occurrence of o, or >size() if not there
+		size_t index_of(String* o); // Returns the index of the first occurrence of o, or >size() if not there
 		String* remove(size_t i); //Removes the element at i, returns the removed element 
-		String* set(size_t i, char* e); // Replaces the element at i with e
+		String* set(size_t i, String* e); // Replaces the element at i with e
 		size_t size(); // Return the number of elements in the collection
 		bool is_empty(); // Is this array empty (0 elements stored)?
 		void print(); // Print this object including the elements it stores
