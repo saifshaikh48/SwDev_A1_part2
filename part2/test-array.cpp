@@ -20,7 +20,7 @@ void test1() {
   s->push_back(5);
   
   t_true(s->hash() == u->hash());
-  t_true(s->equal(u));
+  t_true(s->equals(u));
   
   s->add(0, 4); 
   
@@ -64,7 +64,7 @@ void test2() {
   s->push_back(1);
   
   t_true(s->hash() == u->hash());
-  t_true(s->equal(u));
+  t_true(s->equals(u));
   
   s->add(0, 0); 
   
@@ -139,7 +139,7 @@ void test4() {
   s->add(0,hello);
   
   t_true(s->hash() == u->hash());
-  t_true(s->equal(u));
+  t_true(s->equals(u));
   
   s->add(0, hi); 
   
@@ -189,7 +189,7 @@ void test5() {
   s->push_back(5.7);
   
   t_true(s->hash() == u->hash());
-  t_true(s->equal(u));
+  t_true(s->equals(u));
   
   s->add(0, 4.2); 
   
