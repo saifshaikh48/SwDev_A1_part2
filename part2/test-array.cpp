@@ -1,5 +1,6 @@
 #include "object.h"  // Your file with the CwC declaration of Object
-#include "array.h"  // Your file with the String class
+#include "string.h" // Your file with the CwC declaration of String
+#include "array.h"  // Your file with the array classes
  
 void FAIL() {   exit(1);    }
 void OK(const char* m) { /** print m */ }
@@ -45,7 +46,7 @@ void test1() {
 
   u->push_back(-25);
 
-  t_true(u->get(0) == -25)
+  t_true(u->get(0) == -25);
 
   OK("1");
 }
@@ -110,10 +111,10 @@ void test3() {
   String* r = new String("replaced");
 
   s->add(0, t);
-  String test = s.remove(0);
+  String* test = s->remove(0);
   s->add(0, t2); 
   s->push_back(t3);
-  String replaced = s->replace(1, r);
+  String* replaced = s->set(1, r);
   s->clear();
   t_true(test->equals(t));
   t_true(replaced->equals(t3));
@@ -152,8 +153,8 @@ void test4() {
   t->clear(); 
   
   t_true(t->size() == 0); 
-  t_true(s->index_of(hi)->equals(0)); 
-  t_true(s->index_of(hello)->equals(1)); 
+  t_true(s->index_of(hi) == 0); 
+  t_true(s->index_of(hello)== 1); 
   t_true(s->remove(1)->equals(hello)); 
   t_true(u->set(0, hi)->equals(hello)); 
   t_true(u->get(0)->equals(hi));
@@ -214,7 +215,7 @@ void test5() {
 
   t_true(u->is_empty());
 
-  u->push_back(-17.4)
+  u->push_back(-17.4);
 
   t_true(u->index_of(-17.4) == 0);
 
@@ -252,7 +253,7 @@ void test6() {
  t_true(u->compare(s) > 0);
  t_false(u->compare(test) == 0);
 
- OK("6")
+ OK("6");
 }
  
 int main() {
