@@ -250,7 +250,7 @@ void test6() {
  t_true(test->compare(s) == 0);
  t_true(test->compare(t) < 0);
  t_true(u->compare(s) > 0);
- t_false(u->compare(tsetett) == 0);
+ t_false(u->compare(test) == 0);
 
  OK("6")
 }
