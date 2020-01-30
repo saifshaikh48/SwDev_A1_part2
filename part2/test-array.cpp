@@ -20,7 +20,7 @@ void test1() {
   s->push_back(5);
   
   t_true(s->hash() == u->hash());
-  t_true(s->equal() == u->equal());
+  t_true(s->equal(u));
   
   s->add(0, 4); 
   
@@ -64,7 +64,7 @@ void test2() {
   s->push_back(1);
   
   t_true(s->hash() == u->hash());
-  t_true(s->equal() == u->equal());
+  t_true(s->equal(u));
   
   s->add(0, 0); 
   
@@ -104,14 +104,19 @@ void test2() {
  
 void test3() {
   StringArray * s = new StringArray();
-  s->add(0, "Test");
+  String* t = new String("Test");
+  String* t2 = new String("Test2");
+  String* t3 = new String("Test3");
+  String* r = new String("replaced");
+
+  s->add(0, t);
   String test = s.remove(0);
-  s->add(0, "Test2"); 
-  s->push_back("Test3");
-  String replaced = s->replace(1, "replaced");
+  s->add(0, t2); 
+  s->push_back(t3);
+  String replaced = s->replace(1, r);
   s->clear();
-  t_true(test->equals("Test"));
-  t_true(replaced->equals("Test3"));
+  t_true(test->equals(t));
+  t_true(replaced->equals(t3));
   t_true(s->is_empty());
   t_true(s->size() == 0);
   OK("3");
@@ -122,20 +127,23 @@ void test4() {
   StringArray * t = new StringArray();
   StringArray * u = new StringArray();
   
-  u->push_back("hello");
+  String* hi = new String("hi");
+  String* hello = new String("hello");
+
+  u->push_back(hello);
   
   t_true(s->equals(s));
   t_true(s->equals(t));
   t_false(s->equals(u));
   
-  s->add(0,"hello");
+  s->add(0,hello);
   
   t_true(s->hash() == u->hash());
-  t_true(s->equal() == u->equal());
+  t_true(s->equal(u));
   
-  s->add(0, "hi"); 
+  s->add(0, hi); 
   
-  t_true(s->get(0)->equals("hi")); 
+  t_true(s->get(0)->equals(hi)); 
   
   t->add_all(0, u);
   
@@ -143,14 +151,12 @@ void test4() {
   
   t->clear(); 
   
-  String* hi = new String("hi");
-  String* hello = new String("hello");
   t_true(t->size() == 0); 
   t_true(s->index_of(hi)->equals(0)); 
   t_true(s->index_of(hello)->equals(1)); 
   t_true(s->remove(1)->equals(hello)); 
-  t_true(u->set(0, "hi")->equals("hello")); 
-  t_true(u->get(0)->equals("hi"));
+  t_true(u->set(0, hi)->equals(hello)); 
+  t_true(u->get(0)->equals(hi));
   t_false(u->is_empty()); 
 
   u->remove(0); 
@@ -159,9 +165,12 @@ void test4() {
 
   t->clear(); 
 
-  t->add(0, "5"); 
+  String* five = new String("five");
+  t->add(0, five); 
+  t->add(1, five); //this add behaves similar to push_back
+  t->add(1, five); 
 
-  t_true(t->size() == 1);
+  t_true(t->size() == 3);
 
   OK("4");
 }
@@ -180,7 +189,7 @@ void test5() {
   s->push_back(5.7);
   
   t_true(s->hash() == u->hash());
-  t_true(s->equal() == u->equal());
+  t_true(s->equal(u));
   
   s->add(0, 4.2); 
   
