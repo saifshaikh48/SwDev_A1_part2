@@ -208,7 +208,7 @@ void test5() {
   t_true(s->remove(1) == 5.7f); 
   t_true(u->set(0, 16) == 5.7f); 
   t_true(u->get(0) == 16.0f);
-  t_true(u->index_of(16) == 0);
+  t_true(u->index_of(16.0f) == 0);
   t_false(u->is_empty()); 
 
   u->remove(0); 
