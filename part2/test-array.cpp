@@ -127,7 +127,6 @@ void test3() {
  
   delete s;
   delete t2;
-  delete t3;
   delete r;
 
   OK("3");
@@ -167,7 +166,6 @@ void test4() {
   t_true(s->index_of(hello)== 1); 
   String* removed = s->remove(1);
   t_true(removed->equals(hello));
-  delete removed;
   String* set = u->set(0, hi);
   t_true(set->equals(hello));
   delete set;
