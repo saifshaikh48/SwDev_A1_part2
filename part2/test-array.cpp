@@ -3,7 +3,7 @@
 #include "array.h"  // Your file with the array classes
  
 void FAIL() {   exit(1);    }
-void OK(const char* m) { /** print m */ }
+void OK(const char* m) { printf("%s\n", m); }
 void t_true(bool p) { if (!p) FAIL(); }
 void t_false(bool p) { if (p) FAIL(); }
  
@@ -47,6 +47,10 @@ void test1() {
   u->push_back(-25);
 
   t_true(u->get(0) == -25);
+  
+  delete s;
+  delete t;
+  delete u;
 
   OK("1");
 }
@@ -98,7 +102,9 @@ void test2() {
   t->add(0, -1); 
 
   t_true(t->size() == 0);
-
+  delete s;
+  delete t;
+  delete u;
 
   OK("2");
 }
@@ -155,8 +161,12 @@ void test4() {
   t_true(t->size() == 0); 
   t_true(s->index_of(hi) == 0); 
   t_true(s->index_of(hello)== 1); 
-  t_true(s->remove(1)->equals(hello)); 
-  t_true(u->set(0, hi)->equals(hello)); 
+  String* removed = s->remove(1);
+  t_true(removed->equals(hello));
+  delete removed;
+  String* set = u->set(0, hi);
+  t_true(set->equals(hello));
+  delete set;
   t_true(u->get(0)->equals(hi));
   t_false(u->is_empty()); 
 
@@ -172,6 +182,10 @@ void test4() {
   t->add(1, five); 
 
   t_true(t->size() == 3);
+ 
+  delete s;
+  delete t;
+  delete u;
 
   OK("4");
 }
@@ -194,7 +208,7 @@ void test5() {
   
   s->add(0, 4.2); 
   
-  t_true(s->get(0) == 4.2); 
+  t_true(s->get(0) == 4.2f);
   
   t->add_all(0, u);
   
@@ -203,12 +217,12 @@ void test5() {
   t->clear(); 
   
   t_true(t->size() == 0); 
-  t_true(s->index_of(4.2) == 0); 
-  t_true(s->index_of(5.7) == 1); 
-  t_true(s->remove(1) == 5.7); 
-  t_true(u->set(0, 16) == 5.7); 
-  t_true(u->get(0) == 16.0);
-  t_true(u->index_of(16) == 0);
+  t_true(s->index_of(4.2f) == 0); 
+  t_true(s->index_of(5.7f) == 1); 
+  t_true(s->remove(1) == 5.7f); 
+  t_true(u->set(0, 16) == 5.7f); 
+  t_true(u->get(0) == 16.0f);
+  t_true(u->index_of(16.0f) == 0);
   t_false(u->is_empty()); 
 
   u->remove(0); 
@@ -217,7 +231,11 @@ void test5() {
 
   u->push_back(-17.4);
 
-  t_true(u->index_of(-17.4) == 0);
+  t_true(u->index_of(-17.4f) == 0);
+ 
+  delete s;
+  delete t;
+  delete u;
 
   OK("5");
 }
@@ -252,6 +270,11 @@ void test6() {
  t_true(test->compare(t) < 0);
  t_true(u->compare(s) > 0);
  t_false(u->compare(test) == 0);
+ 
+ delete test;
+ delete s;
+ delete t;
+ delete u;
 
  OK("6");
 }
