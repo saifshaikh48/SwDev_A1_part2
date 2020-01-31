@@ -47,6 +47,9 @@ void test1() {
   u->push_back(-25);
 
   t_true(u->get(0) == -25);
+  delete s;
+  delete t;
+  delete u;
 
   OK("1");
 }
@@ -98,7 +101,10 @@ void test2() {
   t->add(0, -1); 
 
   t_true(t->size() == 0);
-
+ 
+  delete s;
+  delete t;
+  delete u;
 
   OK("2");
 }
@@ -120,6 +126,15 @@ void test3() {
   t_true(replaced->equals(t3));
   t_true(s->is_empty());
   t_true(s->size() == 0);
+ 
+  delete t;
+  delete t2;
+  delete t3;
+  delete r;
+  delete replaced;
+  delete s;
+  delete test;
+ 
   OK("3");
 }
 
@@ -155,8 +170,12 @@ void test4() {
   t_true(t->size() == 0); 
   t_true(s->index_of(hi) == 0); 
   t_true(s->index_of(hello)== 1); 
-  t_true(s->remove(1)->equals(hello)); 
-  t_true(u->set(0, hi)->equals(hello)); 
+  String* removed = s->removed(1);
+  t_true(removed->equals(hello)); 
+  delete remove;
+  String * set = u->set(0, hi);
+  t_true(set->equals(hello)); 
+  delete set;
   t_true(u->get(0)->equals(hi));
   t_false(u->is_empty()); 
 
@@ -172,6 +191,13 @@ void test4() {
   t->add(1, five); 
 
   t_true(t->size() == 3);
+ 
+  delete five;
+  delete s;
+  delete t;
+  delete u;
+  delete hi;
+  delete hello;
 
   OK("4");
 }
@@ -218,6 +244,9 @@ void test5() {
   u->push_back(-17.4);
 
   t_true(u->index_of(-17.4f) == 0);
+  delete s;
+  delete t;
+  delete u;
 
   OK("5");
 }
