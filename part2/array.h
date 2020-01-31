@@ -36,15 +36,15 @@ class BoolArray : public Object {
 		~BoolArray(); //destructor
 
 		void push_back(bool e); // Appends e to end
-		void add(size_t i, int e); // Inserts e at i
+		void add(size_t i, bool e); // Inserts e at i
 		void add_all(size_t i, BoolArray* c); // Inserts all of elements in c into this list at i
 		void clear(); // Removes all of elements from this list
 		virtual bool equals(Object* o); // Compares o with this list for equality.
 		int get(size_t index); // Returns the element at index
 		virtual size_t hash(); // Returns the hash code value for this list.
-		size_t index_of(int o); // Returns the index of the first occurrence of o, or >size() if not there
+		size_t index_of(bool o); // Returns the index of the first occurrence of o, or >size() if not there
 		int remove(size_t i); //Removes the element at i, returns the removed element 
-		int set(size_t i, int e); // Replaces the element at i with e
+		int set(size_t i, bool e); // Replaces the element at i with e
 		size_t size(); // Return the number of elements in the collection
 		bool is_empty(); // Is this array empty (0 elements stored)?
 		void print(); // Print this object including the elements it stores

@@ -95,8 +95,6 @@ void test2() {
 
   t->clear(); 
 
-  t->add(0, 5); 
-
   t_true(t->size() == 0);
 
   t->add(0, -1); 
