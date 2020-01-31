@@ -1,7 +1,7 @@
 #include "object.h"  // Your file with the CwC declaration of Object
 #include "string.h" // Your file with the CwC declaration of String
 #include "array.h"  // Your file with the array classes
- 
+#include <math.h>
 void FAIL() {   exit(1);    }
 void OK(const char* m) { printf("%s\n", m); }
 void t_true(bool p) { if (!p) FAIL(); }
@@ -126,7 +126,6 @@ void test3() {
   t_true(s->size() == 0);
  
   delete s;
-  delete t;
   delete t2;
   delete t3;
   delete r;
@@ -213,7 +212,7 @@ void test5() {
   
   s->add(0, 4.2); 
   
-  t_true(s->get(0) == 4.2f);
+  t_true(abs(s->get(0) - 4.2) < 0.00001);
   
   t->add_all(0, u);
   
@@ -224,9 +223,9 @@ void test5() {
   t_true(t->size() == 0); 
   t_true(s->index_of(4.2f) == 0); 
   t_true(s->index_of(5.7f) == 1); 
-  t_true(s->remove(1) == 5.7f); 
-  t_true(u->set(0, 16) == 5.7f); 
-  t_true(u->get(0) == 16.0f);
+  t_true(abs(s->remove(1) - 5.7) < 0.00001); 
+  t_true(abs(u->set(0, 16) - 5.7) < 0.00001); 
+  t_true(abs(u->get(0) - 16.0) < 0.00001);
   t_true(u->index_of(16.0f) == 0);
   t_false(u->is_empty()); 
 
