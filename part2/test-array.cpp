@@ -97,9 +97,6 @@ void test2() {
 
   t_true(t->size() == 0);
 
-  t->add(0, -1); 
-
-  t_true(t->size() == 0);
   delete s;
   delete t;
   delete u;
