@@ -124,8 +124,18 @@ void test3() {
   s->clear();
   t_true(test->equals(t));
   t_true(replaced->equals(t3));
+ 
+  delete test;
+  delete replaced;
   t_true(s->is_empty());
   t_true(s->size() == 0);
+ 
+  delete s;
+  delete t;
+  delete t2;
+  delete t3;
+  delete r;
+
   OK("3");
 }
 
@@ -272,6 +282,7 @@ void test6() {
  t_false(u->compare(test) == 0);
  
  delete test;
+ delete tsetett;
  delete s;
  delete t;
  delete u;
